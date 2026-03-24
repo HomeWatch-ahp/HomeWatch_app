@@ -1,10 +1,13 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import BottomNav from "@/components/BottomNav";
+import Header from "@/components/Header";
+import Index from "./pages/Index";
+import SearchPage from "./pages/SearchPage";
+import GalleryPage from "./pages/GalleryPage";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -12,14 +15,21 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="min-h-screen bg-background">
+        <BrowserRouter>
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/films" element={<Index />} />
+              <Route path="/series" element={<GalleryPage type="tv" title="Mes Séries" />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <BottomNav />
+        </BrowserRouter>
+      </div>
     </TooltipProvider>
   </QueryClientProvider>
 );
