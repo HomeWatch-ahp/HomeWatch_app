@@ -1,5 +1,5 @@
 const TMDB_BASE = 'https://api.themoviedb.org/3';
-const TMDB_KEY = '2dca580c2a14b55200e784d157207b4d';
+const TMDB_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const IMG_BASE = 'https://image.tmdb.org/t/p';
 
 export const posterUrl = (path: string | null, size = 'w342') =>
