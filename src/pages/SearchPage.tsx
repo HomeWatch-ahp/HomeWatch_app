@@ -88,9 +88,33 @@ export default function SearchPage() {
       </div>
 
       {!query.trim() && (
-        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-          Tendances de la semaine
-        </h3>
+        <div className="flex items-center gap-3 mb-4">
+          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            Tendances
+          </h3>
+          <div className="flex gap-1">
+            <button
+              onClick={() => setTrendingFilter('movie')}
+              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                trendingFilter === 'movie'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'glass text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Films
+            </button>
+            <button
+              onClick={() => setTrendingFilter('tv')}
+              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                trendingFilter === 'tv'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'glass text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Séries
+            </button>
+          </div>
+        </div>
       )}
 
       {loading ? (
