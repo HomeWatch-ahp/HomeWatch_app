@@ -26,9 +26,7 @@ export default function GalleryPage({ type, title }: Props) {
   return (
     <div className="px-4 pb-28 pt-2">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-foreground text-balance">{title}</h2>
-        <span className="text-sm text-muted-foreground font-medium">
-          {items.length} titre{items.length !== 1 ? 's' : ''}
+        <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{title}</h2>
         </span>
       </div>
 
