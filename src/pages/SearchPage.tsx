@@ -10,12 +10,17 @@ export default function SearchPage() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<any[]>([]);
   const [trending, setTrending] = useState<any[]>([]);
+  const [trendingFilter, setTrendingFilter] = useState<'movie' | 'tv'>('movie');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    getTrending('movie').then(r => setTrending(r.slice(0, 10)));
-  }, []);
+    setLoading(true);
+    getTrending(trendingFilter).then(r => {
+      setTrending(r.slice(0, 10));
+      setLoading(false);
+    });
+  }, [trendingFilter]);
 
   const doSearch = useCallback(async (q: string) => {
     if (!q.trim()) {
