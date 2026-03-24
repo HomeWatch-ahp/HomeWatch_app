@@ -64,7 +64,7 @@ export default function SearchPage() {
     <div className="px-4 pb-28 pt-2">
       {/* Search bar */}
       <div className="relative mb-6">
-        <div className="glass rounded-xl flex items-center px-4 py-3 gap-3">
+        <div className="glass rounded-lg flex items-center px-4 py-3 gap-3">
           <Search size={20} className="text-muted-foreground shrink-0" />
           <input
             type="text"

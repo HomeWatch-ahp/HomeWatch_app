@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Plus, Check, X } from 'lucide-react';
+import { Plus, Check, X, Film, Tv } from 'lucide-react';
 import { posterUrl } from '@/lib/tmdb';
 import type { MediaItem } from '@/lib/storage';
 
@@ -19,7 +19,7 @@ export default function MediaCard({ item, inGallery, onAdd, onRemove, index = 0 
       initial={{ opacity: 0, filter: 'blur(8px)' }}
       animate={{ opacity: 1, filter: 'blur(0px)' }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group relative rounded-xl overflow-hidden"
+      className="group relative rounded-lg overflow-hidden"
     >
       <div className="aspect-[2/3] relative">
         {poster ? (
@@ -62,8 +62,15 @@ export default function MediaCard({ item, inGallery, onAdd, onRemove, index = 0 
       </div>
 
       <div className="p-2 space-y-0.5">
-        <p className="text-sm font-medium text-foreground truncate">{item.title}</p>
-        <p className="text-xs text-muted-foreground">{item.year}</p>
+        <div className="flex items-center gap-1.5">
+          {item.type === 'movie' ? (
+            <Film size={12} className="text-primary shrink-0" />
+          ) : (
+            <Tv size={12} className="text-primary shrink-0" />
+          )}
+          <p className="text-sm font-medium text-foreground truncate">{item.title}</p>
+        </div>
+        <p className="text-xs text-muted-foreground ml-[18px]">{item.year}</p>
       </div>
     </motion.div>
   );

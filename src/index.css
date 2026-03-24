@@ -34,7 +34,7 @@
     --input: 0 0% 75% / 0.15;
     --ring: 180 100% 50%;
 
-    --radius: 1rem;
+    --radius: 0.5rem;
 
     --glass-bg: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
     --glass-border: rgba(192, 192, 192, 0.2);
