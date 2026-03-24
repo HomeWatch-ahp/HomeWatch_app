@@ -25,9 +25,8 @@ export default function GalleryPage({ type, title }: Props) {
 
   return (
     <div className="px-4 pb-28 pt-2">
-      <div className="flex items-center justify-between mb-6">
+      <div className="mb-6">
         <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{title}</h2>
-        </span>
       </div>
 
       {items.length === 0 ? (
