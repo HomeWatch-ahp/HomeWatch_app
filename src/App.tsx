@@ -20,8 +20,8 @@ const App = () => (
           <Header />
           <main>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/films" element={<Index />} />
+              <Route path="/" element={<SearchPage />} />
+              <Route path="/films" element={<GalleryPage type="movie" title="Mes Films" />} />
               <Route path="/series" element={<GalleryPage type="tv" title="Mes Séries" />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="*" element={<NotFound />} />
