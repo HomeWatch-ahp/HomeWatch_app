@@ -14,7 +14,7 @@ export default function BottomNav() {
 
   return (
     <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
-      <div className="glass-nav rounded-pill flex items-center justify-around py-3 px-4">
+      <div className="glass-nav rounded-xl flex items-center justify-around py-3 px-4">
         {tabs.map(({ path, icon: Icon, label }) => {
           const active = location.pathname === path || (path === '/films' && location.pathname === '/');
           return (
