@@ -89,6 +89,10 @@
   }
 }
 
+body {
+  background: transparent !important;
+}
+
 @layer base {
   * {
     @apply border-border;

@@ -9,6 +9,8 @@ import AuthPage from "./pages/AuthPage";
 import SearchPage from "./pages/SearchPage";
 import GalleryPage from "./pages/GalleryPage";
 import NotFound from "./pages/NotFound";
+// BACKGROUD GRADIENT 
+import BackgroundGradient from "@/components/BackgroundGradient";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +30,7 @@ function AppRoutes() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       <main>
         <Routes>
@@ -47,6 +49,7 @@ function AppRoutes() {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <BackgroundGradient /> {/* ← BACKGROUND GRADIENT */}
       <Toaster />
       <BrowserRouter>
         <AuthProvider>
