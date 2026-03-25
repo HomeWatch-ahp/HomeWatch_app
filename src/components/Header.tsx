@@ -44,7 +44,7 @@ export default function Header() {
           <Menu size={18} />
         </button>
       </div>
-      
+
       <div className="h-px bg-border mx-4" />
 
       {/* Overlay */}
@@ -97,18 +97,12 @@ export default function Header() {
             <div className="flex flex-col gap-2 px-5 pb-8 flex-1">
               {/* User email */}
               {user?.email && (
-                <div className="mb-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/8">
-                  <p className="text-[11px] text-muted-foreground/60 uppercase tracking-wider font-medium mb-0.5">
-                    Connecté en tant que
-                  </p>
-                  <p className="text-sm text-muted-foreground truncate">
+                <div className=" mb-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/8">
+                  <p className=" text-sm text-muted-foreground truncate">
                     {user.email}
                   </p>
                 </div>
               )}
-
-              {/* Divider */}
-              <div className="h-px bg-border/30 my-1" />
 
               {/* Logout */}
               <button
@@ -126,7 +120,7 @@ export default function Header() {
                 </span>
                 <span className="font-medium">Se déconnecter</span>
               </button>
-
+              <div className="h-px bg-border mx-4" />
               {/* Theme toggle */}
               <button
                 onClick={() => setLight(!light)}
