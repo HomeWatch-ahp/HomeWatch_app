@@ -1,4 +1,4 @@
-# HomeWatch
+# HomeWatch v1.1.2
 
 Application de gestion de films et séries, propulsée par TMDB et Firebase.
 

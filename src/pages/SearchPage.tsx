@@ -21,7 +21,7 @@ export default function SearchPage() {
   useEffect(() => {
     setLoading(true);
     getTrending(trendingFilter).then((r) => {
-      setTrending(r.slice(0, 10));
+      setTrending(r.slice(0, 20));
       setLoading(false);
     });
   }, [trendingFilter]);

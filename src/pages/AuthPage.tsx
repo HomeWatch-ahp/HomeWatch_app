@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Film, Mail, Lock, User, Chrome, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import Logo from "@/assets/logo-header.svg";
 
 export default function AuthPage() {
   const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useAuth();
@@ -58,13 +59,17 @@ export default function AuthPage() {
       >
         {/* Logo */}
         <div className="flex flex-col items-center mb-8 gap-3">
-          <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-            <Film size={24} className="text-primary" />
+          <div className="w-12 h-12 flex items-center justify-center">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="text-center">
             <h1 className="text-xl font-bold text-foreground">HomeWatch</h1>
             <p className="text-sm text-muted-foreground mt-1">
-              {mode === 'login' ? 'Bon retour 👋' : 'Créez votre compte'}
+              {mode === "login" ? "Bon retour 👋" : "Créez votre compte"}
             </p>
           </div>
         </div>
@@ -91,15 +96,18 @@ export default function AuthPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-3">
             <AnimatePresence>
-              {mode === 'signup' && (
+              {mode === "signup" && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
+                  animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <div className="relative">
-                    <User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                    <User
+                      size={16}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                    />
                     <input
                       type="text"
                       placeholder="Nom d'affichage"
@@ -113,7 +121,10 @@ export default function AuthPage() {
             </AnimatePresence>
 
             <div className="relative">
-              <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Mail
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+              />
               <input
                 type="email"
                 placeholder="Email"
@@ -125,9 +136,12 @@ export default function AuthPage() {
             </div>
 
             <div className="relative">
-              <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Lock
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+              />
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -168,8 +182,8 @@ export default function AuthPage() {
                   <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                   Chargement...
                 </span>
-              ) : mode === 'login' ? (
-                'Se connecter'
+              ) : mode === "login" ? (
+                "Se connecter"
               ) : (
                 "Créer le compte"
               )}
@@ -178,15 +192,15 @@ export default function AuthPage() {
 
           {/* Switch mode */}
           <p className="text-center text-xs text-muted-foreground">
-            {mode === 'login' ? "Pas encore de compte ?" : 'Déjà un compte ?'}{' '}
+            {mode === "login" ? "Pas encore de compte ?" : "Déjà un compte ?"}{" "}
             <button
               onClick={() => {
-                setMode(mode === 'login' ? 'signup' : 'login');
-                setError('');
+                setMode(mode === "login" ? "signup" : "login");
+                setError("");
               }}
               className="text-primary font-medium hover:underline"
             >
-              {mode === 'login' ? "S'inscrire" : 'Se connecter'}
+              {mode === "login" ? "S'inscrire" : "Se connecter"}
             </button>
           </p>
         </div>
