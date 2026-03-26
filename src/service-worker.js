@@ -1,4 +1,4 @@
-const CACHE_NAME = "homewatch-v1.1.2";
+const CACHE_NAME = "homewatch-v1.1.3";
 
 // Ressources statiques à mettre en cache immédiatement
 const STATIC_ASSETS = [
