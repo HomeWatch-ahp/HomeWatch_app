@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from 'framer-motion';
 import { Search, X } from 'lucide-react';
 import { searchMulti, getTrending } from '@/lib/tmdb';
@@ -9,10 +9,10 @@ import { useToast } from '@/hooks/use-toast';
 
 export default function SearchPage() {
   const { user } = useAuth();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [trending, setTrending] = useState<any[]>([]);
-  const [trendingFilter, setTrendingFilter] = useState<'movie' | 'tv'>('movie');
+  const [trendingFilter, setTrendingFilter] = useState<"movie" | "tv">("movie");
   const [loading, setLoading] = useState(false);
   // On garde la liste locale pour isInGallery sans re-fetch Firestore à chaque action
   const [galleryIds, setGalleryIds] = useState<Set<string>>(new Set());
@@ -46,8 +46,8 @@ export default function SearchPage() {
     id: r.id,
     title: r.title || r.name,
     posterPath: r.poster_path,
-    year: (r.release_date || r.first_air_date || '').slice(0, 4),
-    type: r.media_type === 'movie' ? 'movie' : 'tv',
+    year: (r.release_date || r.first_air_date || "").slice(0, 4),
+    type: r.media_type === "movie" ? "movie" : "tv",
     overview: r.overview,
   });
 
@@ -59,24 +59,33 @@ export default function SearchPage() {
       await addToGallery(user.uid, item);
       setGalleryIds((prev) => new Set(prev).add(key));
       toast({
-        title: 'Ajouté !',
+        title: "Ajouté !",
         description: `${item.title} a été ajouté à votre galerie.`,
       });
     } catch {
       toast({
-        title: 'Erreur',
+        title: "Erreur",
         description: "Impossible d'ajouter ce titre.",
-        variant: 'destructive',
+        variant: "destructive",
       });
     }
   };
 
   const checkInGallery = (r: any): boolean => {
-    const type = r.media_type === 'movie' ? 'movie' : 'tv';
+    const type = r.media_type === "movie" ? "movie" : "tv";
     return galleryIds.has(`${type}-${r.id}`);
   };
 
   const displayItems = query.trim() ? results : trending;
+
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const activeElement = document.activeElement as HTMLElement;
+    if (activeElement === searchInputRef.current) {
+      activeElement.blur();
+    }
+  }, []);
 
   return (
     <div className="px-4 pb-28 pt-2">
@@ -85,15 +94,19 @@ export default function SearchPage() {
         <div className="glass rounded-lg flex items-center px-4 py-3 gap-3">
           <Search size={20} className="text-muted-foreground shrink-0" />
           <input
+            ref={searchInputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Rechercher un film ou une série..."
             className="bg-transparent flex-1 text-foreground placeholder:text-muted-foreground outline-none text-sm"
-            autoFocus
+           
           />
           {query && (
-            <button onClick={() => setQuery('')} className="text-muted-foreground hover:text-foreground">
+            <button
+              onClick={() => setQuery("")}
+              className="text-muted-foreground hover:text-foreground"
+            >
               <X size={18} />
             </button>
           )}
@@ -107,21 +120,21 @@ export default function SearchPage() {
           </h3>
           <div className="flex gap-1">
             <button
-              onClick={() => setTrendingFilter('movie')}
+              onClick={() => setTrendingFilter("movie")}
               className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                trendingFilter === 'movie'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'glass text-muted-foreground hover:text-foreground'
+                trendingFilter === "movie"
+                  ? "bg-primary text-primary-foreground"
+                  : "glass text-muted-foreground hover:text-foreground"
               }`}
             >
               Films
             </button>
             <button
-              onClick={() => setTrendingFilter('tv')}
+              onClick={() => setTrendingFilter("tv")}
               className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                trendingFilter === 'tv'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'glass text-muted-foreground hover:text-foreground'
+                trendingFilter === "tv"
+                  ? "bg-primary text-primary-foreground"
+                  : "glass text-muted-foreground hover:text-foreground"
               }`}
             >
               Séries
@@ -133,11 +146,17 @@ export default function SearchPage() {
       {loading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="glass rounded-xl aspect-[2/3] animate-pulse" />
+            <div
+              key={i}
+              className="glass rounded-xl aspect-[2/3] animate-pulse"
+            />
           ))}
         </div>
       ) : (
-        <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+        <motion.div
+          layout
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+        >
           {displayItems.map((r, i) => {
             const item = toMediaItem(r);
             const added = checkInGallery(r);

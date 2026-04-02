@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HomeWatch</string>
+    <string name="title_activity_main">HomeWatch</string>
+    <string name="package_name">com.homewatch.app</string>
+    <string name="custom_url_scheme">com.homewatch.app</string>
+</resources>

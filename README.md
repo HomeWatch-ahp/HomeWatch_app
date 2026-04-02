@@ -1,4 +1,4 @@
-# HomeWatch v1.1.6
+# HomeWatch v1.1.9
 
 Application de gestion de films et séries, propulsée par TMDB et Firebase.
 
@@ -42,6 +42,7 @@ cp .env.example .env
 #### Activer l'authentification
 
 Dans la console Firebase : **Authentication > Sign-in method**
+
 - Activez **Email/Mot de passe**
 - Activez **Google**
 
