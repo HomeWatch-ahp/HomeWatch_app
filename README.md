@@ -78,3 +78,15 @@ users/
       movie-{tmdbId}   → { id, title, posterPath, year, type, overview, addedAt }
       tv-{tmdbId}      → { id, title, posterPath, year, type, overview, addedAt }
 ```
+
+
+# Apres modifs:
+
+```bash
+npm run build
+```
+## Pour le serveur de production
+
+```bash
+npm run preview
+```
